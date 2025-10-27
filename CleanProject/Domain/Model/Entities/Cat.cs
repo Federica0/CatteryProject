@@ -126,7 +126,20 @@ namespace Domain.Model.Entities
             }
         }
         
-        public Cat(string name, string sex, string breed, string? description,DateOnly birthDate, DateOnly arriveDate, DateOnly? extiDate = null)
+        public Cat(string name, string gender, string breed, string? description,DateOnly? birthDate, DateOnly arriveDate, DateOnly? extiDate = null)
+
+        {
+            Name = name;
+            Gender = gender;
+            Breed = breed;
+            Description = description;
+            BirthDate = birthDate;
+            ArriveDate = arriveDate;
+            ExitDate = extiDate;
+            IdentificativeCode = GenerateCode(arriveDate);
+            
+        }
+        public Cat(string name, string sex, string breed, string? description, DateOnly? birthDate, string identificativeCode, DateOnly arriveDate, DateOnly? extiDate = null)
 
         {
             Name = name;
@@ -136,9 +149,10 @@ namespace Domain.Model.Entities
             BirthDate = birthDate;
             ArriveDate = arriveDate;
             ExitDate = extiDate;
-            IdentificativeCode = GenerateCode(arriveDate);
-            
+            IdentificativeCode = identificativeCode;
+
         }
+
         //costruttore che mi fa passare in ingresso il codice identificativo 
         private string GenerateRandomNumber()
         {
