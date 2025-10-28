@@ -8,15 +8,19 @@ namespace Domain.Model.ValueObjects
 {
     public record Phone
     {
-        private const int NUMBER_LENGHT = 10;
-        public string Prefix { get; }
-        public string Number { get; }
-        public Phone(string prefix, string number)
+        public string Value { get; }
+
+        public Phone(string value)
         {
-            if (!prefix.Contains("+")) { throw new ArgumentException("invalid prefix, prefix must contain  'x' "); }
-            if (number.Count() != NUMBER_LENGHT) { throw new ArgumentException($"invalid phone number, length must be {NUMBER_LENGHT}"); }
-            Prefix = prefix;
-            Number = number;
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Phone number not valid");
+
+            if (!value.All(char.IsDigit) || value.Length < 7)
+                throw new ArgumentException("Invalid phone number format");
+
+            Value = value;
         }
+
+        public override string ToString() => Value;
     }
 }

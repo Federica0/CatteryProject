@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Dto;
 using Domain.Model.Entities;
 using Domain.Model.ValueObjects;
 
@@ -10,16 +12,29 @@ namespace Application.Mappers
 {
     public static class UserMapper
     {
-        public static User ToEntity (this User dto)
+        public static User ToEntity (this UserDto dto)
         {
             return new User(
                 dto.Name,
                 dto.Surname,
                 dto.Address,
-                dto.PhoneNumber,
-                dto.Email,
-                dto.Cap,
-                dto.FisicalCode
+                new Phone(dto.Phone),
+                new Email(dto.Email),
+                new CAP(dto.Cap),
+                new ItalianTaxCode(dto.ItalianTaxCode)
+                );
+        }
+        public static UserDto ToDto(this User user)
+        {
+            return new UserDto(
+                user.Name,
+                user.Surname,
+                user.Address,
+                user.City,
+                user.PhoneNumber.Value,
+                user.Email.Value,
+                user.Cap.Value,
+                user.FisicalCode.Value
                 );
         }
     }
