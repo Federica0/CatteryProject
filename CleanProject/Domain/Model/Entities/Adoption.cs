@@ -9,7 +9,7 @@ namespace Domain.Model.Entities
     public class Adoption
     {
         private Cat _adoptionCat;
-        public Cat AdoptionCat { get; set; } //gatto 
+        public Cat AdoptionCat { get; set; } 
 
         private User _person;
         public User Person { get; set; }
