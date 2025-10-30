@@ -10,7 +10,10 @@ namespace Application.Interfaces
 {
     public interface IAdoptionRepository
     {
-        void Adoption(Adoption adoption);
-        void FailAdoption(Adoption adoptio, DateOnly endDate);
+        IEnumerable<Adoption> GetAllAdoption();
+        IEnumerable<Adoption>? GetAdoptionByCatCode(String code);
+        void AddAdoption(Adoption adoption);
+        void UpdateAdoption(Adoption adoption); 
+        void DeleteAdoption(Adoption adoption);
     }
 }

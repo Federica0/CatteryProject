@@ -26,15 +26,14 @@ namespace Domain.Model.Entities
             Person = person;
             AdoptionDate = adoptionDate;
             IsFailed = false;
-            adoptionCat.ExitDate= adoptionDate;
+            AdoptionCat.ExitDate= adoptionDate;
         }
-        public void FailAdoption(Adoption adoptio, DateOnly endDate)
-        {
-            
-            adoptio.IsFailed = true;
-            adoptio.EndDate = endDate;
-            adoptio.AdoptionCat.ExitDate = null;
-            adoptio.AdoptionCat.Description = $"  Adozione fallita: iniziata{adoptio.AdoptionDate: dd/MM/yyyy} terminata {adoptio.EndDate: dd/MM/yyyy}";
+        public void FailAdoption( DateOnly endDate)
+        {            
+            IsFailed = true;
+            EndDate = endDate;
+            AdoptionCat.ExitDate = null;
+            AdoptionCat.Description = $"  Adozione fallita: iniziata{AdoptionDate: dd/MM/yyyy} terminata {EndDate: dd/MM/yyyy}";
         }
     }
 }

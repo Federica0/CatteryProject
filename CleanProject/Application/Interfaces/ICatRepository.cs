@@ -12,8 +12,10 @@ namespace Application.Interfaces
     {
         void AddCat(Cat cat);
         void DeletCat(Cat cat);
-        bool AvaibleCat(Cat cat);
-        Cat Information(Cat cat);
+        void DeletCat(String code);
+        void UpdateCat(String code);
+        Cat? GetCatByCode(String code);
+        IEnumerable<Cat> GetAllCats();
 
     }
 }

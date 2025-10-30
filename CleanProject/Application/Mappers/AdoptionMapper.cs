@@ -11,14 +11,19 @@ namespace Application.Mappers
 {
     public static class AdoptionMapper
     {
-        public static Adoption ToEntity (this Adoption dto)
+        public static Adoption ToEntity (this AdoptionDto dto)
         {
+            throw new NotImplementedException();
+            /*
             return new Adoption(
                 dto.AdoptionCat,
                 dto.Person,
                 dto.AdoptionDate
                 );
+            */
         }
+
+        
 
         /*public static User ToEntity (this UserDto dto)
     {
