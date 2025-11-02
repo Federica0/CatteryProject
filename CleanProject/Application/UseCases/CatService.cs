@@ -22,7 +22,8 @@ namespace Application.UseCases
 
         public void AddCat(CatDto catDto) {
             
-
+            Cat cat = catDto.ToEntity();
+            _repositoryCat.AddCat(cat);
         }
 
         public void DeleteCat(string code){            

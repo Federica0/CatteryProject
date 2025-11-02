@@ -11,45 +11,23 @@ namespace Application.Mappers
 {
     public static class AdoptionMapper
     {
-        public static Adoption ToEntity (this AdoptionDto dto)
+        public static Adoption ToEntity(this AdoptionDto dto)
         {
-            throw new NotImplementedException();
-            /*
             return new Adoption(
-                dto.AdoptionCat,
-                dto.Person,
+                dto.Cat.ToEntity(),
+                dto.User.ToEntity(),
                 dto.AdoptionDate
                 );
-            */
         }
-
-        
-
-        /*public static User ToEntity (this UserDto dto)
-    {
-        return new User(
-            dto.Name,
-            dto.Surname,
-            dto.Address,
-            new Phone(dto.Phone),
-            new Email(dto.Email),
-            new CAP(dto.Cap),
-            new ItalianTaxCode(dto.ItalianTaxCode)
-            );
-    }
-    public static UserDto ToDto(this User user)
-    {
-        return new UserDto(
-            user.Name,
-            user.Surname,
-            user.Address,
-            user.City,
-            user.PhoneNumber.Value,
-            user.Email.Value,
-            user.Cap.Value,
-            user.FisicalCode.Value
-            );
-    }
-         */
+        public static AdoptionDto ToDto(this Adoption adoption)
+        {
+            return new AdoptionDto(
+                adoption.AdoptionCat.ToDto(),
+                adoption.Person.ToDto(),
+                adoption.AdoptionDate,
+                adoption.EndDate,
+                adoption.IsFailed
+                );
+        }
     }
 }
