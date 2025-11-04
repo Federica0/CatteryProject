@@ -69,12 +69,13 @@ namespace Domain.Model.Entities
         public ItalianTaxCode FisicalCode {  get; set; }   
         
 
-        public User(string name, string surname, string address, Phone phoneNumber,
+        public User(string name, string surname, string address,string city ,Phone phoneNumber,
             Email email, CAP cap, ItalianTaxCode fisicalCode)
         {
             Name = name;
             Surname = surname;
             Address = address;
+            City = city;
             PhoneNumber = phoneNumber;
             Email = email;
             Cap = cap;

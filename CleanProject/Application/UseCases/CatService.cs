@@ -37,6 +37,7 @@ namespace Application.UseCases
             }        
         }
 
+
         public void AdoptCat(string catCode, UserDto userDto) {
             //inserisciuna adozione per il gatto e aggiorni i valori del gatto
             Cat? cat = _repositoryCat.GetCatByCode(catCode);

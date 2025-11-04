@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Application.Dto;
+using Infrastructure.Repositories.Dto;
 using Domain.Model.Entities;
 using Domain.Model.ValueObjects;
 
-namespace Application.Mappers
+
+namespace Infrastructure.Repositories.Mapper
 {
-    public static class UserMapper
+    public static class UserPersistenceMapper
     {
-        public static User ToEntity (this UserDto dto)
+        public static User ToEntity(this UserPersistenceDto dto)
         {
             return new User(
                 dto.Name,
@@ -23,11 +23,11 @@ namespace Application.Mappers
                 new Email(dto.Email),
                 new CAP(dto.Cap),
                 new ItalianTaxCode(dto.ItalianTaxCode)
-                );
+            );
         }
-        public static UserDto ToDto(this User user)
+        public static UserPersistenceDto ToPersistenceDto(this User user)
         {
-            return new UserDto(
+            return new UserPersistenceDto(
                 user.Name,
                 user.Surname,
                 user.Address,
@@ -36,7 +36,7 @@ namespace Application.Mappers
                 user.Email.Value,
                 user.Cap.Value,
                 user.FisicalCode.Value
-                );
+            );
         }
     }
 }

@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Dto
+namespace Infrastructure.Repositories.Dto
 {
-    public record UserDto(
-
-        string Name,
+    public record UserPersistenceDto
+    (
+         string Name,
         string Surname,
         string Address,
         string City,
@@ -17,7 +16,7 @@ namespace Application.Dto
         string Email,
         int Cap,
         string ItalianTaxCode
-        
     );
+
     
 }
