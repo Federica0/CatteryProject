@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Domain.Model.Entities;
+using Infrastructure.Repositories.Dto;
+
+using Infrastructure.Repositories.Mapper;
+
+namespace Infrastructure.Peristence.Repositories
+{
+    public class JsonAdoptionRepositories
+    {
+        private readonly string _filePath = "Adoption.json";
+        private readonly Dictionary<string, Adoption> _cache = new(StringComparer.OrdinalIgnoreCase);
+        private bool _initialized = false;
+        private void EnsureLoaded()
+        {
+            if (_initialized) return;
+            if (!File.Exists(_filePath))
+            {
+                _initialized = true;
+                return;
+            }
+            var json = File.ReadAllText(_filePath);
+            var dtos = JsonSerializer.Deserialize<List<AdoptioinPersistenceDto>>(json) ?? new List<AdoptioinPersistenceDto>();
+            foreach (var dto in dtos)
+            {
+                Adoption adoption = dto.ToEntity();
+                //_cache[adoption.Ado] = adoption;
+            }
+            _initialized = true;
+        }
+    }
+}
+
