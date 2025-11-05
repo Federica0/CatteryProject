@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface IUser
+    public interface IUserRepository
     {
         void AddUser(User user);
-        void DeletUser(User user);       
+        void DeleteUser(User user);       
         IEnumerable<User> GetAllUsers();
     }
 }

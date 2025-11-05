@@ -11,10 +11,10 @@ namespace Application.Interfaces
     public interface ICatRepository
     {
         void AddCat(Cat cat);
-        void DeletCat(Cat cat);
-        void DeletCat(String code);
-        void UpdateCat(String code);
-        Cat? GetCatByCode(String code);
+        void DeleteCat(Cat cat);
+        void DeleteCat(string code);
+        void UpdateCat(Cat code);
+        Cat? GetCatByCode(string code);
         IEnumerable<Cat> GetAllCats();
 
     }

@@ -13,8 +13,8 @@ namespace Application.UseCases
 {
     public class UserService
     {
-        private readonly IUser _repositoryUser;
-        public UserService(IUser repositoryUser)
+        private readonly IUserRepository _repositoryUser;
+        public UserService(IUserRepository repositoryUser)
         {
             _repositoryUser = repositoryUser;
         }

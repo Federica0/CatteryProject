@@ -14,6 +14,6 @@ namespace Application.Interfaces
         IEnumerable<Adoption>? GetAdoptionByCatCode(String code);
         void AddAdoption(Adoption adoption);
         void UpdateAdoption(Adoption adoption); 
-        void DeleteAdoption(Adoption adoption);
+        void CancelAdoption(Adoption adoption);
     }
 }

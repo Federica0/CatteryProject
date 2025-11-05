@@ -16,7 +16,9 @@ namespace Application.Mappers
             return new Adoption(
                 dto.Cat.ToEntity(),
                 dto.User.ToEntity(),
-                dto.AdoptionDate
+                dto.AdoptionDate,
+                dto.IsFailed,
+                dto.EndDate
                 );
         }
         public static AdoptionDto ToDto(this Adoption adoption)

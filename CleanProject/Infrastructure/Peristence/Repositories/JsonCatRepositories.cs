@@ -12,7 +12,7 @@ using Infrastructure.Repositories.Mapper;
 
 namespace Infrastructure.Peristence.Repositories
 {
-    public class JsonCatRepositories//implementre l'interfaccia ICatRepositories
+    public class JsonCatRepositories:ICatRepository
     {
         private readonly string _filePath = "cat.json";
         private readonly Dictionary<string, Cat> _cache = new(StringComparer.OrdinalIgnoreCase);
@@ -30,10 +30,64 @@ namespace Infrastructure.Peristence.Repositories
             foreach(var dto in dtos)
             {
                 Cat cat = dto.ToEntity();
-                _cache[cat.IdentificativeCode] = cat;
+                string key = $"{cat.IdentificativeCode}";
+                _cache[key] = cat;
             }
             _initialized = true;
         }
+        private void SaveToFile()
+        {
+            var dtos = _cache.Values.Select(a => a.ToPersistenceDto()).ToList();
+            var json = JsonSerializer.Serialize(dtos, new JsonSerializerOptions { WriteIndented = true});
+            File.WriteAllText(_filePath, json);
+        }
+        public void AddCat(Cat cat)
+        {
+            EnsureLoaded();
+            if (!_cache.ContainsKey(cat.IdentificativeCode))
+                throw new InvalidOperationException($"Gatto '{cat.IdentificativeCode}' già presente nel gattile.");
+            _cache[cat.IdentificativeCode] = cat;
+            SaveToFile();
+        }
+        public void DeleteCat(Cat cat)
+        {
+            EnsureLoaded();
+            if (!_cache.Remove(cat.IdentificativeCode))
+                throw new InvalidOperationException($"Il gatto '{cat.IdentificativeCode}' non trovato per la rimozione");
+            SaveToFile();
+        }
+        public void DeleteCat(string code)
+        {
+            EnsureLoaded();
+            if (_cache.Remove(code))
+                throw new InvalidOperationException("gatto non trovato per la rimozione");
+            SaveToFile();
+            
+        }
+        public void UpdateCat(Cat cat)
+        {
+            EnsureLoaded();
+            if (!_cache.ContainsKey(cat.IdentificativeCode))
+            {
+                throw new InvalidOperationException("Gatto non trovato per l'aggiornamento");
+            }
+            _cache[cat.IdentificativeCode] = cat;
+            SaveToFile();
+        }
+        public Cat? GetCatByCode(string code)
+        {
+            EnsureLoaded();
+            Cat? cat;
+            _cache.TryGetValue(code, out cat);
+            return cat;
+        }
+        public IEnumerable<Cat> GetAllCats()
+        {
+            EnsureLoaded();
+            return _cache.Values;
+        }
+
+
     }
 
 }

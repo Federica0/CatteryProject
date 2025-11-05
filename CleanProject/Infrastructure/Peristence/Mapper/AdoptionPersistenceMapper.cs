@@ -16,7 +16,9 @@ namespace Infrastructure.Repositories.Mapper
             return new Adoption(
                 dto.Cat.ToEntity(),
                 dto.User.ToEntity(),
-                dto.AdoptionDate
+                dto.AdoptionDate,
+                dto.IsFailed,
+                dto.EndDate
                 );
         }
         public static AdoptioinPersistenceDto ToPersistenceDto(this Adoption adoption)

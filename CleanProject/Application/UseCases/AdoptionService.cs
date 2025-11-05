@@ -26,11 +26,11 @@ namespace Application.UseCases
             Adoption adoption = adoptionDto.ToEntity();
 
             //sull'oggetto chioamo il metodo che gestisce il fallimento dell'adozione --> fa le modifiche anche al cat
-            adoption.FailAdoption(date);
+            adoption.FailAdoption(adoption, date);
 
             //rendo persistenti le modifiche
             _repositoryAdoption.UpdateAdoption(adoption);
-            _repositoryCat.UpdateCat(adoption.AdoptionCat.IdentificativeCode);
+            _repositoryCat.UpdateCat(adoption.AdoptionCat);
         }
 
     }
