@@ -14,7 +14,7 @@ namespace Domain.Model.ValueObjects
         public ItalianTaxCode(string value )
         {
             
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException("the tax code cannot be null or empty");
             }
@@ -23,7 +23,6 @@ namespace Domain.Model.ValueObjects
                 throw new ArgumentException("the tax code must cointain 16 chars, included letters and numbers");
             }
             Value = value;
-            return;
         }
     }
 }

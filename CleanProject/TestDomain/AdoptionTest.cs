@@ -26,7 +26,7 @@ namespace TestDomain
             var name = "Mario";
             var surname = "Rossi";
             var address = "Via Roma 1";
-            Phone phone = new Phone("+39234567890");
+            Phone phone = new Phone("39234567890");
             var email = new Email("mario.rossi@example.com");
             var cap = new CAP(00100);
             var city = "Cesenatico";

@@ -83,9 +83,9 @@ namespace Domain.Model.Entities
             get { return _arriveDate; }
             set
             {
-                if(value> BirthDate && value< ExitDate)
+                if(value < DateOnly.FromDateTime(DateTime.Now))
                 {
-                    _arriveDate = ArriveDate;
+                    _arriveDate =value;
                 }
                 else
                 {
@@ -99,12 +99,12 @@ namespace Domain.Model.Entities
             get { return _exitDate; }
             set
             {
-                if(BirthDate < value && ArriveDate < value)
+                if (value < DateOnly.FromDateTime(DateTime.Now) && value > ArriveDate)
                 {
-                    _exitDate = ArriveDate;
+                    _exitDate = value;
                 }else
                 {
-                    throw new Exception("...");
+                    throw new ArgumentException("...");
                 }
                     
             }
@@ -115,42 +115,43 @@ namespace Domain.Model.Entities
             get { return _birthDate; }
             set
             {
-                if (ArriveDate > value && ExitDate > value)
+                if (value==null||(ArriveDate > value && ExitDate > value))
                 {
-                    _birthDate = ArriveDate;
+                    _birthDate = value;
                 }else
                 {
-                    throw new Exception("...");
+                    throw new ArgumentException("...");
                 }
                     
             }
         }
         
-        public Cat(string name, string gender, string breed, string? description,DateOnly? birthDate, DateOnly arriveDate, DateOnly? extiDate = null)
+        public Cat(string name, string gender, string breed, string? description,DateOnly? birthDate, DateOnly arriveDate, DateOnly? extiDate)
 
         {
             Name = name;
             Gender = gender;
             Breed = breed;
             Description = description;
-            BirthDate = birthDate;
             ArriveDate = arriveDate;
             ExitDate = extiDate;
+            BirthDate = birthDate;
             IdentificativeCode = GenerateCode(arriveDate);
             
         }
-        public Cat(string name, string sex, string breed, string? description, DateOnly? birthDate, string identificativeCode, DateOnly arriveDate, DateOnly? extiDate = null)
-
+        public Cat(string name, string sex, string breed, string? description, DateOnly? birthDate, DateOnly arriveDate, 
+            DateOnly? extiDate = null, string? identificativeCode = null): this(name, sex, breed, description, birthDate,
+             arriveDate, extiDate) 
         {
-            Name = name;
-            Gender = sex;
-            Breed = breed;
-            Description = description;
-            BirthDate = birthDate;
-            ArriveDate = arriveDate;
-            ExitDate = extiDate;
-            IdentificativeCode = identificativeCode;
-
+            if(identificativeCode == null)
+            {
+                identificativeCode= GenerateCode(arriveDate);
+            }
+            else
+            {
+                IdentificativeCode = identificativeCode;
+            }
+               
         }
 
         //costruttore che mi fa passare in ingresso il codice identificativo 

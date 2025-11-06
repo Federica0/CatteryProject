@@ -59,7 +59,6 @@ namespace Infrastructure.Peristence.Repositories
         {
             EnsureLoaded();
             return _cache.Values;
-        }
-        public 
+        } 
     }
 }

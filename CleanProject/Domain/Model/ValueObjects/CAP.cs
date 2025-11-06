@@ -11,7 +11,7 @@ namespace Domain.Model.ValueObjects
         public int Value; 
         public CAP(int value)
         {
-            if (value < 10000 || value > 99999)
+            if (value < 00000 || value > 99999)
             {
                 throw new ArgumentOutOfRangeException("...");
             }
